@@ -5,8 +5,10 @@ namespace Damon\YouzanPay;
 use Monolog\Logger;
 use Pimple\Container;
 use Damon\YouzanPay\Core\Token;
+use Doctrine\Common\Cache\Cache;
 use Monolog\Handler\NullHandler;
 use Illuminate\Config\Repository;
+use Damon\YouzanPay\QrCode\QrCode;
 use Monolog\Handler\StreamHandler;
 use Doctrine\Common\Cache\FilesystemCache;
 
@@ -23,6 +25,8 @@ class Application extends Container
         $this->setLoggerDriver($this->monolog());
 
         $this->registerCoreService();
+
+        $this->registerService();
     }
 
     /**
@@ -44,7 +48,7 @@ class Application extends Container
      *
      * @param Doctrine\Common\Cache\Cache $cache
      */
-    protected function setCacheDriver($cache)
+    protected function setCacheDriver(Cache $cache)
     {
         $this['cache'] = $cache;
     }
@@ -89,6 +93,13 @@ class Application extends Container
                             $this['config']['store_id'],
                             $this['cache']
                         );
+        };
+    }
+
+    protected function registerService()
+    {
+        $this['qrcode'] = function () {
+            return new QrCode($this);
         };
     }
 
