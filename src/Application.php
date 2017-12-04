@@ -4,6 +4,7 @@ namespace Damon\YouzanPay;
 
 use Pimple\Container;
 use Damon\YouzanPay\Core\Token;
+use Damon\YouzanPay\Trade\Trade;
 use Doctrine\Common\Cache\Cache;
 use Illuminate\Config\Repository;
 use Damon\YouzanPay\QrCode\QrCode;
@@ -15,13 +16,13 @@ class Application extends Container
     {
         parent::__construct();
 
-        $this->registerConfig($config);
+        $this->loadConfig($config);
 
         $this->setCacheDriver(new FilesystemCache(sys_get_temp_dir()));
 
         $this->registerCoreService();
 
-        $this->registerService();
+        $this->registerServices();
     }
 
     /**
@@ -31,7 +32,7 @@ class Application extends Container
      *
      * @return void
      */
-    protected function registerConfig($config)
+    protected function loadConfig($config)
     {
         $this['config'] = function () use ($config) {
             return new Repository($config);
@@ -64,10 +65,19 @@ class Application extends Container
         };
     }
 
-    protected function registerService()
+    /**
+     * Register services
+     *
+     * @return void
+     */
+    protected function registerServices()
     {
         $this['qrcode'] = function () {
             return new QrCode($this);
+        };
+
+        $this['trade'] = function () {
+            return new Trade($this);
         };
     }
 

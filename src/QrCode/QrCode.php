@@ -17,13 +17,13 @@ class QrCode extends Gateway
         return 'youzan.pay.qrcode';
     }
 
-    protected function method()
-    {
-        return 'create';
-    }
-
     public function create(array $parameters = [])
     {
-        return $this->request($parameters);
+        return $this->setMethod('create')->request($parameters);
+    }
+
+    public function get(array $parameters = [])
+    {
+        return $this->setMethod('get')->request($parameters);
     }
 }

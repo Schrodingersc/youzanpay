@@ -28,6 +28,13 @@ class Token
         $this->cache = $cache;
     }
 
+    /**
+     * Get access token.
+     *
+     * @param  boolean  $forceRefresh
+     *
+     * @return string
+     */
     public function getToken($forceRefresh = false)
     {
         $cacheKey = $this->getCacheKey();
@@ -44,6 +51,11 @@ class Token
         return $cached;
     }
 
+    /**
+     * Get access token from server
+     *
+     * @return array
+     */
     protected function getTokenFromServer()
     {
         $response = Zttp::post(self::API_TOKEN_GATEWAY, [
