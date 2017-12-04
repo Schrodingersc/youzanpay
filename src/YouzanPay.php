@@ -10,7 +10,7 @@ use Illuminate\Config\Repository;
 use Damon\YouzanPay\QrCode\QrCode;
 use Doctrine\Common\Cache\FilesystemCache;
 
-class Application extends Container
+class YouzanPay extends Container
 {
     public function __construct(array $config)
     {
