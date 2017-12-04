@@ -16,16 +16,22 @@ class Trade extends Gateway
      * @var array
      */
     protected $fields = [
+        'tid',
         'qr_id',
-        'status'
+        'status',
+        'total_fee',
+        'created',
+        'update_time',
+        'pay_time',
+        'pay_type'
     ];
 
     /**
-     * Response
+     * Current trade
      *
      * @var array
      */
-    protected $response;
+    protected $trade;
 
     protected function gateway()
     {
@@ -77,7 +83,7 @@ class Trade extends Gateway
             'tid' => $this->request('tid')
         ]);
 
-        return $response['response']['trade'];
+        return $this->trade = $response['response']['trade'];
     }
 
     /**
@@ -108,5 +114,15 @@ class Trade extends Gateway
     public function isClosed()
     {
         return array_get($this->getData(), 'status') === self::TRADE_CLOSED;
+    }
+
+    /**
+     * Get current trade
+     *
+     * @return array
+     */
+    public function getTrade()
+    {
+        return $this->trade;
     }
 }
