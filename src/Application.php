@@ -2,14 +2,11 @@
 
 namespace Damon\YouzanPay;
 
-use Monolog\Logger;
 use Pimple\Container;
 use Damon\YouzanPay\Core\Token;
 use Doctrine\Common\Cache\Cache;
-use Monolog\Handler\NullHandler;
 use Illuminate\Config\Repository;
 use Damon\YouzanPay\QrCode\QrCode;
-use Monolog\Handler\StreamHandler;
 use Doctrine\Common\Cache\FilesystemCache;
 
 class Application extends Container
@@ -21,8 +18,6 @@ class Application extends Container
         $this->registerConfig($config);
 
         $this->setCacheDriver(new FilesystemCache(sys_get_temp_dir()));
-
-        $this->setLoggerDriver($this->monolog());
 
         $this->registerCoreService();
 
@@ -51,33 +46,6 @@ class Application extends Container
     protected function setCacheDriver(Cache $cache)
     {
         $this['cache'] = $cache;
-    }
-
-    /**
-     * Monolog instance
-     *
-     * @return Monolog\Logger
-     */
-    protected function monolog()
-    {
-        $logger = new Logger('damon.youzan-pay');
-        if ($this['config']['log']['debug']) {
-            $logger->pushHandler(new NullHandler);
-        } else {
-            $logger->pushHandler(new StreamHandler($this['config']['log']['path']), Logger::DEBUG);
-        }
-
-        return $logger;
-    }
-
-    /**
-     * Set Cache driver
-     *
-     * @param Doctrine\Common\Cache\Cache $logger
-     */
-    protected function setLoggerDriver($logger)
-    {
-        $this['logger'] = $logger;
     }
 
     /**

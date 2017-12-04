@@ -13,7 +13,6 @@
         "pimple/pimple": "^3.2",
         "illuminate/config": "^5.5",
         "doctrine/cache": "^1.7",
-        "monolog/monolog": "^1.23",
         "kitetail/zttp": "^0.3.0"
     },
     "require-dev": {
