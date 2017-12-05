@@ -15,21 +15,6 @@ class Trade extends Gateway
     const TRADE_CLOSED = 'TRADE_CLOSED';
 
     /**
-     * @var array
-     */
-    protected $fields = [
-        'tid',
-        'qr_id',
-        'status',
-        'kdt_name',
-        'total_fee',
-        'created',
-        'update_time',
-        'pay_time',
-        'pay_type'
-    ];
-
-    /**
      * Current trade
      *
      * @var array
@@ -56,7 +41,6 @@ class Trade extends Gateway
     protected function mergeParameters(array $parameters)
     {
         return array_merge([
-            'fields' => $this->fields,
             'with_childs' => false
         ], $parameters);
     }
