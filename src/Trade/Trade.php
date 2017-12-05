@@ -65,7 +65,7 @@ class Trade extends Gateway
      *
      * @return mixed
      */
-    protected function request($name)
+    protected function getSourceInput($name)
     {
         $source = json_decode(file_get_contents('php://input'), true);
 
@@ -80,7 +80,7 @@ class Trade extends Gateway
     protected function getData()
     {
         $response = $this->get([
-            'tid' => $this->request('tid')
+            'tid' => $this->getSourceInput('tid')
         ]);
 
         return $this->trade = $response['response']['trade'];

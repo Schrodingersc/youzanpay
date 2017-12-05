@@ -3,16 +3,16 @@
 namespace Damon\YouzanPay\Support;
 
 use Zttp\Zttp;
-use Damon\YouzanPay\Application;
+use Damon\YouzanPay\YouzanPay;
 
 abstract class Gateway
 {
     const API_GATEWAY = 'https://open.youzan.com/api/oauthentry/%s/%s/%s?access_token=%s';
 
     /**
-     * Application instance
+     * YouzanPay instance
      *
-     * @var Damon\YouzanPay\Application
+     * @var Damon\YouzanPay\YouzanPay
      */
     protected $app;
 
@@ -23,7 +23,7 @@ abstract class Gateway
      */
     protected $method;
 
-    public function __construct(Application $app)
+    public function __construct(YouzanPay $app)
     {
         $this->app = $app;
     }
