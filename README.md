@@ -7,8 +7,8 @@ use Damon\YouzanPay\YouzanPay;
 use Damon\YouzanPay\QrCode\QrCode;
 
 $app = new YouzanPay([
-    'client_id' => 'f7409fedae389c55a4',
-    'client_secret' => '8f647bf6a17b8bcfbe388231281a87fc',
+    'client_id' => 'f7409fedae526c55a4',
+    'client_secret' => '8f647bf6a17b8bcfbe3103231281a87fc',
     'store_id' => '40040763'
 ]);
 
