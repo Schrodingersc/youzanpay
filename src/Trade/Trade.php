@@ -10,6 +10,8 @@ class Trade extends Gateway
 
     const TRADE_SUCCESS = 'TRADE_SUCCESS';
 
+    const TRADE_BUYER_SIGNED = 'TRADE_BUYER_SIGNED';
+
     const TRADE_CLOSED = 'TRADE_CLOSED';
 
     /**
@@ -19,6 +21,7 @@ class Trade extends Gateway
         'tid',
         'qr_id',
         'status',
+        'kdt_name',
         'total_fee',
         'created',
         'update_time',
@@ -80,7 +83,7 @@ class Trade extends Gateway
     protected function getData()
     {
         $response = $this->get([
-            'tid' => $this->getSourceInput('tid')
+            'tid' => $this->getSourceInput('id')
         ]);
 
         return $this->trade = $response['response']['trade'];
@@ -103,7 +106,7 @@ class Trade extends Gateway
      */
     public function isSuccessfully()
     {
-        return array_get($this->getData(), 'status') === self::TRADE_SUCCESS;
+        return in_array(array_get($this->getData()), [self::TRADE_SUCCESS, self::TRADE_BUYER_SIGNED]);
     }
 
      /**
@@ -123,6 +126,10 @@ class Trade extends Gateway
      */
     public function getTrade()
     {
+        if (empty($this->trade)) {
+            return $this->getData();
+        }
+
         return $this->trade;
     }
 }
