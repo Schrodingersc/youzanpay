@@ -1,5 +1,15 @@
 # Youzan Pay
 
+[Demo](http://pay.demo.rive.io)
+
+[如何申请](https://blog.xu42.cn/2017/11/26/person-website-instant-payment-solution/)
+
+### 安装
+
+```
+composer require damon/youzan-pay
+```
+
 ### 创建订单
 
 ```php
