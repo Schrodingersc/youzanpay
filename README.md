@@ -2,7 +2,7 @@
 
 感谢 [Xu42](https://github.com/xu42/pay) 提供的 Demo
 
-[Demo](http://pay.demo.rive.io)
+收款演示 [Demo](http://pay.demo.rive.io)
 
 [如何申请](https://blog.xu42.cn/2017/11/26/person-website-instant-payment-solution/)
 
