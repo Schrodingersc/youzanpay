@@ -106,7 +106,7 @@ class Trade extends Gateway
      */
     public function isSuccessfully()
     {
-        return in_array(array_get($this->getData()), [self::TRADE_SUCCESS, self::TRADE_BUYER_SIGNED]);
+        return in_array(array_get($this->getData(), 'status'), [self::TRADE_SUCCESS, self::TRADE_BUYER_SIGNED]);
     }
 
      /**
