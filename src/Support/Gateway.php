@@ -49,7 +49,7 @@ abstract class Gateway
      */
     protected function getFullGateway()
     {
-        return sprintf(self::API_GATEWAY, $this->gateway(), $this->version(), $this->getMethod(), $this->app->token->getToken(true));
+        return sprintf(self::API_GATEWAY, $this->gateway(), $this->version(), $this->getMethod(), $this->app->token->getToken());
     }
 
     /**
