@@ -10,6 +10,8 @@ class Trade extends Gateway
 
     const TRADE_SUCCESS = 'TRADE_SUCCESS';
 
+    const TRADE_BUYER_SIGNED = 'TRADE_BUYER_SIGNED';
+
     const TRADE_CLOSED = 'TRADE_CLOSED';
 
     /**
@@ -88,7 +90,8 @@ class Trade extends Gateway
      */
     public function isSuccessfully()
     {
-        return $this->getSourceInput('status') === self::TRADE_SUCCESS;
+        return $this->getSourceInput('status') === self::TRADE_SUCCESS
+            && in_array(array_get($this->getData(), 'status'), [self::TRADE_SUCCESS, self::TRADE_BUYER_SIGNED]);
     }
 
      /**
