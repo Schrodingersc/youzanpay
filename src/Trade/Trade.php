@@ -78,7 +78,7 @@ class Trade extends Gateway
      */
     public function isWaitPay()
     {
-        return array_get($this->getData(), 'status') === self::TRADE_WAIT_BUYER_PAY;
+        return $this->getSourceInput('status') === self::TRADE_WAIT_BUYER_PAY;
     }
 
      /**
@@ -88,7 +88,7 @@ class Trade extends Gateway
      */
     public function isSuccessfully()
     {
-        return iarray_get($this->getData(), 'status') === self::TRADE_SUCCESS;
+        return $this->getSourceInput('status') === self::TRADE_SUCCESS;
     }
 
      /**
@@ -98,7 +98,7 @@ class Trade extends Gateway
      */
     public function isClosed()
     {
-        return array_get($this->getData(), 'status') === self::TRADE_CLOSED;
+        return $this->getSourceInput('status') === self::TRADE_CLOSED;
     }
 
     /**
